@@ -35,8 +35,8 @@ local function newSubClass(className, super)
 	-- @param ...: Arguments to pass to the initializer (__init) method.
 	-- @return (table): The new instance of the subclass.
 	function mySubClass.new(...)
-		local super = super and super.new() or {}
-		local self = setmetatable(super, mySubClass)
+		local internal = super and super.new() or {}
+		local self = setmetatable(internal, mySubClass)
 		self:__init(...)
 		return self
 	end

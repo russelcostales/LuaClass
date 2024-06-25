@@ -5,29 +5,29 @@ return function()
 
 	local function checkDefaultClass(method)
 		it("should have a constructor -> " .. method, function()
-			local class = class[method]("class")
+			local myClass = class[method]("class")
 
-			expect(class.new).to.be.a("function")
+			expect(myClass.new).to.be.a("function")
 		end)
 
 		it("should have a class name -> " .. method, function()
-			local class = class[method]("class")
+			local myClass = class[method]("class")
 
-			expect(class.ClassName).to.be.a("string")
+			expect(myClass.ClassName).to.be.a("string")
 		end)
 
 		it("should initialize on instantiate -> " .. method, function()
-			local class = class[method]("class")
+			local myClass = class[method]("class")
 
-			function class:__init()
+			function myClass:__init()
 				self._variable = 1
 			end
 
-			function class:getVariable()
+			function myClass:getVariable()
 				return self._variable
 			end
 
-			local object = class.new()
+			local object = myClass.new()
 
 			expect(object:getVariable()).to.be.ok()
 		end)
