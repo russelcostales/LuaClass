@@ -3,42 +3,38 @@ name: CI
 on:
   push:
     branches:
-    - main
+      - main
   pull_request:
     branches:
-    - main
+      - main
 
 jobs:
-
   lint:
-
     name: Lint
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - uses: ok-nick/setup-aftman@v0.4.2
-      name: Install Aftman
-      with:
-        token: ${{ SECRETS.GITHUB_TOKEN }}
+      - uses: ok-nick/setup-aftman@v0.4.2
+        name: Install Aftman
+        with:
+          token: ${{ SECRETS.GITHUB_TOKEN }}
 
-    - name: Lint
-      run: |
-        selene ./src
+      - name: Lint
+        run: |
+          selene ./src --exclude Packages
 
   style:
-
     name: Styling
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Install StyLua
-      uses: JohnnyMorganz/stylua-action@v3
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        version: latest
-        args: --check .
-        
+      - name: Install StyLua
+        uses: JohnnyMorganz/stylua-action@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: latest
+          args: --check . --exclude Packages
