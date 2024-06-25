@@ -8,7 +8,7 @@
                 "$path": "src"
             },
             "TestEZ": {
-                "$path": "packages/TestEZ"
+                "$path": "packages/testez"
             }
         },
         "ServerScriptService": {
