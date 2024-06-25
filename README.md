@@ -83,6 +83,3 @@ The Lua code provided includes utilities for creating classes (`newClass`), subc
 - Use `newClass(className)` to create a new class.
 - Use `newSubClass(className, super)` to create a subclass inheriting from a superclass.
 - Use `includesClass(className)` to create a new class that includes functionality from a superclass.
-
-```lua
--- Lua code goes here
