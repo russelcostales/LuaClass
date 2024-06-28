@@ -1,85 +1,76 @@
-# Lua Class and Subclass Creation Utilities
+# Using the Class Creation Functions
 
-## `newClass(className)`
+Author: Russel Costales
+Date: August 6, 2024
 
-Creates a new class with the specified className.
+## Overview
 
-### Parameters
+This Lua script provides functions to create classes and subclasses with inheritance and mixin capabilities. It allows you to define structured object-oriented programming constructs in Lua with reduced boilerplate.
 
-- `className` (string): The name of the class.
+## Example Usage
 
-### Returns
+### Creating a New Class
 
-(table): The newly created class table.
+To create a new class, use the `newClass` function:
 
-## `newClass.new(...)`
+```lua
+local class = require("path.to.class")
 
-Constructs a new instance of the class.
+local MyClass = class.newClass("MyClass")
 
-### Parameters
+function MyClass:__init()
+    self._variable = 1
+end
 
-- `...`: Arguments to pass to the initializer (`__init`) method.
+function MyClass:getVariable()
+    return self._variable
+end
 
-### Returns
+local instance = MyClass.new()
+print(instance:getVariable()) -- Output: 1
+```
 
-(table): The new instance of the class.
+### Creating a Subclass
+You can create a subclass that inherits from a superclass using `newSubClass`:
+```lua
+local class = require("path.to.class")
 
-## `newSubClass(className, super)`
+local SuperClass = class.newClass("SuperClass")
 
-Creates a new subclass inheriting from a superclass.
+function SuperClass:__init()
+    self._greeting = "Hello!"
+end
 
-### Parameters
+function SuperClass:getGreeting()
+    return self._greeting
+end
 
-- `className` (string): The name of the subclass.
-- `super` (table): The superclass to inherit from.
+local SubClass = class.newSubClass("SubClass", SuperClass)
 
-### Returns
+function SubClass:__init()
+    self._name = "John"
+end
 
-(table): The newly created subclass table.
+function SubClass:getName()
+    return self._name
+end
 
-## `newSubClass.new(...)`
+local instance = SubClass.new()
+print(instance:getGreeting()) -- Output: Hello!
+print(instance:getName())     -- Output: John
+```
 
-Constructs a new instance of the subclass.
+Including Functionality from a Superclass
+To create a class that includes functionality from a superclass, use `includesClass`:
 
-### Parameters
+## Additional Notes
 
-- `...`: Arguments to pass to the initializer (`__init`) method.
+- **Constructor** `(__init)`: Each class and subclass can define an `__init` method to initialize instance variables.
+- **Inheritance:** Subclasses inherit methods and properties from their superclasses.
+- **Mixin Functionality:** Use `includesClass` to incorporate functionality from another class instance.
 
-### Returns
+## Conclusion
 
-(table): The new instance of the subclass.
+These class creation functions provide a structured approach to object-oriented programming in Lua, supporting inheritance and mixin capabilities. By using these functions, you can organize and manage complex code structures effectively.
 
-## `includesClass(className)`
-
-Creates a new class that includes functionality from a superclass.
-
-### Parameters
-
-- `className` (string): The name of the new class.
-
-### Returns
-
-(table): The newly created class table.
-
-## `includesClass.new(super, ...)`
-
-Constructs a new instance of the class that includes functionality from a superclass.
-
-### Parameters
-
-- `super` (table): The superclass to include functionality from.
-- `...`: Arguments to pass to the initializer (`__init`) method.
-
-### Returns
-
-(table): The new instance of the class.
-
----
-
-The Lua code provided includes utilities for creating classes (`newClass`), subclasses (`newSubClass`), and classes that include functionality from a superclass (`includesClass`). Each function is designed to facilitate object-oriented programming in Lua by defining classes and their instances.
-
-### Usage
-
-- Use `newClass(className)` to create a new class.
-- Use `newSubClass(className, super)` to create a subclass inheriting from a superclass.
-- Use `includesClass(className)` to create a new class that includes functionality from a superclass.
+For more details, refer to the Lua script's comments or documentation provided with the script itself.
