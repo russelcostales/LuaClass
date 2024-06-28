@@ -1,8 +1,4 @@
 # Using the Class Creation Functions
-
-Author: Russel Costales
-Date: August 6, 2024
-
 ## Overview
 
 This Lua script provides functions to create classes and subclasses with inheritance and mixin capabilities. It allows you to define structured object-oriented programming constructs in Lua with reduced boilerplate.
